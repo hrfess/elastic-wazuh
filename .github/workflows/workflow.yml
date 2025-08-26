@@ -15,16 +15,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Trivy scan on all local Docker images
+      - name: Find and scan Docker images with Trivy
         id: trivy
         run: |
           set -e
           mkdir -p trivy-reports
           failed=0
-          for img in $(docker images --format "{{.Repository}}:{{.Tag}}"); do
-            echo "🔍 Scanning $img ..."
-            trivy image --severity HIGH,CRITICAL --exit-code 1 --format table --output trivy-reports/${img//[:\/]/_}.txt "$img" || failed=1
+
+          # Find all images declared in the repo (adjust grep path as needed)
+          images=$(grep -rhoP 'image:\s*\K\S+' ../wazuh/prototype/wazuh-docker_test/multi-node/ | sort -u)
+
+          for img in $images; do
+            echo "🔍 Processing $img ..."
+            
+            # Check if the image exists locally
+            if docker image inspect "$img" > /dev/null 2>&1; then
+              echo "✅ Found locally: $img"
+            else
+              echo "📥 Pulling missing image: $img"
+              docker pull "$img"
+            fi
+
+            # Run Trivy scan
+            safe_name=$(echo "$img" | tr '/:' '__')
+            trivy image --severity HIGH,CRITICAL --exit-code 1 \
+              --format table --output trivy-reports/${safe_name}.txt "$img" || failed=1
           done
+
           exit $failed
 
       - name: Upload scan reports as artifacts
@@ -33,11 +50,20 @@ jobs:
           name: trivy-reports
           path: trivy-reports/
 
+      - name: Combine reports into single file
+        if: always()
+        run: |
+          echo "## 🛡️ Trivy Scan Results" > combined-report.md
+          for f in trivy-reports/*.txt; do
+            echo -e "\n---\n### Report: $(basename $f)" >> combined-report.md
+            cat "$f" >> combined-report.md
+          done
+
       - name: Create or update Trivy scan issue
         if: always()
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: "🚨 Trivy Scan Results"
-          content-filepath: trivy-reports/$(ls trivy-reports | head -n 1)
+          content-filepath: combined-report.md
           labels: security, vulnerability
 
