@@ -1,0 +1,10 @@
+
+name: test workflow
+run-name: ${{ github.actor }} is testing out actions
+on: push
+branches: master
+jobs: 
+  Hello:
+    runs-on: self-hosted
+    steps:
+      - run: echo hello
