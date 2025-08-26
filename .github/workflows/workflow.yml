@@ -1,13 +1,43 @@
-
-name: test workflow
-run-name: ${{ github.actor }} is testing out actions
+name: Trivy Scan
 
 on:
   push:
     branches:
-      - master
-jobs: 
-  Hello:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trivy-scan:
     runs-on: self-hosted
     steps:
-      - run: echo hello
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy scan on all local Docker images
+        id: trivy
+        run: |
+          set -e
+          mkdir -p trivy-reports
+          failed=0
+          for img in $(docker images --format "{{.Repository}}:{{.Tag}}"); do
+            echo "🔍 Scanning $img ..."
+            trivy image --severity HIGH,CRITICAL --exit-code 1 --format table --output trivy-reports/${img//[:\/]/_}.txt "$img" || failed=1
+          done
+          exit $failed
+
+      - name: Upload scan reports as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-reports
+          path: trivy-reports/
+
+      - name: Create or update Trivy scan issue
+        if: always()
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🚨 Trivy Scan Results"
+          content-filepath: trivy-reports/$(ls trivy-reports | head -n 1)
+          labels: security, vulnerability
+
