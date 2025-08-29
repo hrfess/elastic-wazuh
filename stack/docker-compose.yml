@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    build: 
+      dockerfile: docker/nginx/Dockerfile
+      context: ..
+    env_file:
+      - ../configs/nginx/.env
+    volumes:
+      - ../configs/nginx/nginx:/etc/nginx/
+      - ../configs/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+  wazuh1.dashboard:
+    image: wazuh1.dashboard
