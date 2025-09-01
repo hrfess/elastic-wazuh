@@ -1,0 +1,768 @@
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type    │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ wazuh/wazuh-manager:4.12.0 (amazon 2023.7.20250428 (Amazon Linux))               │   amazon   │       24        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/Cython-0.29.36.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/MarkupSafe-2.1.2.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/PyJWT-2.8.0.dist-info/M- │ python-pkg │        0        │    -    │
+│ ETADATA                                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/PyYAML-5.4.1.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/SQLAlchemy-2.0.23.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/anyio-4.1.0.dist-info/M- │ python-pkg │        0        │    -    │
+│ ETADATA                                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/api-4.12.0.dist-info/ME- │ python-pkg │        0        │    -    │
+│ TADATA                                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/asgiref-3.7.2.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/attrs-23.1.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/azure_common-1.1.25.dis- │ python-pkg │        0        │    -    │
+│ t-info/METADATA                                                                  │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/azure_core-1.30.2.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/azure_storage_blob-12.2- │ python-pkg │        0        │    -    │
+│ 0.0.dist-info/METADATA                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/azure_storage_common-2.- │ python-pkg │        0        │    -    │
+│ 1.0.dist-info/METADATA                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/boto3-1.34.135.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/botocore-1.34.135.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/cachetools-4.1.0.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/certifi-2024.7.4.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/cffi-1.15.1.dist-info/M- │ python-pkg │        0        │    -    │
+│ ETADATA                                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/chardet-3.0.4.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/charset_normalizer-2.0.- │ python-pkg │        0        │    -    │
+│ 4.dist-info/METADATA                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/click-8.1.3.dist-info/M- │ python-pkg │        0        │    -    │
+│ ETADATA                                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/clickclick-20.10.2.dist- │ python-pkg │        0        │    -    │
+│ -info/METADATA                                                                   │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/connexion-3.1.0.dist-in- │ python-pkg │        0        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/content_size_limit_asgi- │ python-pkg │        0        │    -    │
+│ -0.1.5.dist-info/METADATA                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/cryptography-44.0.1.dis- │ python-pkg │        0        │    -    │
+│ t-info/METADATA                                                                  │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/defusedxml-0.6.0.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/docker-7.1.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/docker_pycreds-0.4.0.di- │ python-pkg │        0        │    -    │
+│ st-info/METADATA                                                                 │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/docutils-0.15.2.dist-in- │ python-pkg │        0        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/exceptiongroup-1.2.0.di- │ python-pkg │        0        │    -    │
+│ st-info/METADATA                                                                 │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/frozenlist-1.2.0.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/future-0.18.3.dist-info- │ python-pkg │        1        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_api_core-1.30.0.- │ python-pkg │        0        │    -    │
+│ dist-info/METADATA                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_auth-1.28.0.dist- │ python-pkg │        0        │    -    │
+│ -info/METADATA                                                                   │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_cloud_core-1.7.1- │ python-pkg │        0        │    -    │
+│ .dist-info/METADATA                                                              │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_cloud_pubsub-2.7- │ python-pkg │        0        │    -    │
+│ .1.dist-info/METADATA                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_cloud_storage-1.- │ python-pkg │        0        │    -    │
+│ 39.0.dist-info/METADATA                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_crc32c-1.1.2.dis- │ python-pkg │        0        │    -    │
+│ t-info/METADATA                                                                  │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/google_resumable_media-- │ python-pkg │        0        │    -    │
+│ 1.3.1.dist-info/METADATA                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/googleapis_common_proto- │ python-pkg │        0        │    -    │
+│ s-1.51.0.dist-info/METADATA                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/greenlet-2.0.2.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/grpc_google_iam_v1-0.12- │ python-pkg │        0        │    -    │
+│ .3.dist-info/METADATA                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/grpcio-1.58.0.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/h11-0.14.0.dist-info/ME- │ python-pkg │        1        │    -    │
+│ TADATA                                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/httpcore-1.0.2.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/httpx-0.26.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/idna-3.7.dist-info/META- │ python-pkg │        0        │    -    │
+│ DATA                                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/inflection-0.3.1.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/isodate-0.6.1.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/jinja2-3.1.4.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/jmespath-0.9.5.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/jsonschema-4.20.0.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/jsonschema_path-0.3.2.d- │ python-pkg │        0        │    -    │
+│ ist-info/METADATA                                                                │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/jsonschema_specificatio- │ python-pkg │        0        │    -    │
+│ ns-2023.11.2.dist-info/METADATA                                                  │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/lazy_object_proxy-1.10.- │ python-pkg │        0        │    -    │
+│ 0.dist-info/METADATA                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/libcst-0.3.20.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/more_itertools-8.2.0.di- │ python-pkg │        0        │    -    │
+│ st-info/METADATA                                                                 │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/multidict-5.2.0.dist-in- │ python-pkg │        0        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/mypy_extensions-0.4.3.d- │ python-pkg │        0        │    -    │
+│ ist-info/METADATA                                                                │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/numpy-1.26.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/openapi_schema_validato- │ python-pkg │        0        │    -    │
+│ r-0.6.2.dist-info/METADATA                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/openapi_spec_validator-- │ python-pkg │        0        │    -    │
+│ 0.7.1.dist-info/METADATA                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/packaging-20.9.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pathable-0.4.3.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pathlib-1.0.1.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pip-23.3.2.dist-info/ME- │ python-pkg │        0        │    -    │
+│ TADATA                                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/proto_plus-1.19.0.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/protobuf-3.19.6.dist-in- │ python-pkg │        1        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/psutil-5.9.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pyarrow-14.0.1.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pyasn1-0.4.8.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pyasn1_modules-0.2.8.di- │ python-pkg │        0        │    -    │
+│ st-info/METADATA                                                                 │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pycparser-2.21.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pyparsing-2.4.7.dist-in- │ python-pkg │        0        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/python_dateutil-2.8.1.d- │ python-pkg │        0        │    -    │
+│ ist-info/METADATA                                                                │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/python_json_logger-2.0.- │ python-pkg │        0        │    -    │
+│ 2.dist-info/METADATA                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/python_multipart-0.0.20- │ python-pkg │        0        │    -    │
+│ .dist-info/METADATA                                                              │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/pytz-2020.1.dist-info/M- │ python-pkg │        0        │    -    │
+│ ETADATA                                                                          │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/referencing-0.31.1.dist- │ python-pkg │        0        │    -    │
+│ -info/METADATA                                                                   │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/requests-2.32.2.dist-in- │ python-pkg │        0        │    -    │
+│ fo/METADATA                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/rfc3339_validator-0.1.4- │ python-pkg │        0        │    -    │
+│ .dist-info/METADATA                                                              │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/rpds_py-0.15.2.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/rsa-4.7.2.dist-info/MET- │ python-pkg │        0        │    -    │
+│ ADATA                                                                            │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/s3transfer-0.10.2.dist-- │ python-pkg │        0        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/secure-0.3.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/setuptools-65.5.1.dist-- │ python-pkg │        2        │    -    │
+│ info/METADATA                                                                    │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/six-1.16.0.dist-info/ME- │ python-pkg │        0        │    -    │
+│ TADATA                                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/sniffio-1.3.0.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/starlette-0.42.0.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/tabulate-0.8.9.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/typing_extensions-4.12.- │ python-pkg │        0        │    -    │
+│ 2.dist-info/METADATA                                                             │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/typing_inspect-0.7.1.di- │ python-pkg │        0        │    -    │
+│ st-info/METADATA                                                                 │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/urllib3-2.2.2.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/uvicorn-0.31.0.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/uvloop-0.17.0.dist-info- │ python-pkg │        0        │    -    │
+│ /METADATA                                                                        │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/wazuh-4.12.0.dist-info/- │ python-pkg │        0        │    -    │
+│ METADATA                                                                         │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/websocket_client-0.57.0- │ python-pkg │        0        │    -    │
+│ .dist-info/METADATA                                                              │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/werkzeug-3.1.3.dist-inf- │ python-pkg │        0        │    -    │
+│ o/METADATA                                                                       │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/xmltodict-0.12.0.dist-i- │ python-pkg │        0        │    -    │
+│ nfo/METADATA                                                                     │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/site-packages/yarl-1.7.0.dist-info/ME- │ python-pkg │        0        │    -    │
+│ TADATA                                                                           │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ var/ossec/framework/python/lib/python3.10/test/test_importlib/data/example-21.1- │ python-pkg │        0        │    -    │
+│ 2-py3.6.egg                                                                      │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ usr/share/filebeat/bin/filebeat                                                  │  gobinary  │       64        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ /var/ossec/data_tmp/permanent/var/ossec/etc/sslmanager.key                       │    text    │        -        │    1    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ /var/ossec/etc/sslmanager.key                                                    │    text    │        -        │    1    │
+└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+wazuh/wazuh-manager:4.12.0 (amazon 2023.7.20250428 (Amazon Linux))
+==================================================================
+Total: 24 (HIGH: 24, CRITICAL: 0)
+
+┌──────────────────────────┬────────────────┬──────────┬────────┬───────────────────────┬────────────────────────┬──────────────────────────────────────────────────────────────┐
+│         Library          │ Vulnerability  │ Severity │ Status │   Installed Version   │     Fixed Version      │                            Title                             │
+├──────────────────────────┼────────────────┼──────────┼────────┼───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ glib2                    │ CVE-2025-3360  │ HIGH     │ fixed  │ 2.82.2-765.amzn2023   │ 2.82.2-766.amzn2023    │ glibc: GLib prior to 2.82.5 is vulnerable to integer         │
+│                          │                │          │        │                       │                        │ overflow and...                                              │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-3360                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-6052  │          │        │                       │                        │ glib: Integer overflow in g_string_maybe_expand() leading to │
+│                          │                │          │        │                       │                        │ potential buffer overflow in GLib...                         │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-6052                    │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ glibc                    │ CVE-2025-4802  │          │        │ 2.34-117.amzn2023.0.1 │ 2.34-196.amzn2023.0.1  │ glibc: static setuid binary dlopen may incorrectly search    │
+│                          │                │          │        │                       │                        │ LD_LIBRARY_PATH                                              │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4802                    │
+├──────────────────────────┤                │          │        │                       │                        │                                                              │
+│ glibc-common             │                │          │        │                       │                        │                                                              │
+│                          │                │          │        │                       │                        │                                                              │
+│                          │                │          │        │                       │                        │                                                              │
+├──────────────────────────┤                │          │        │                       │                        │                                                              │
+│ glibc-minimal-langpack   │                │          │        │                       │                        │                                                              │
+│                          │                │          │        │                       │                        │                                                              │
+│                          │                │          │        │                       │                        │                                                              │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ libarchive               │ CVE-2025-5914  │          │        │ 3.7.4-2.amzn2023.0.2  │ 3.7.4-2.amzn2023.0.3   │ libarchive: Double free at                                   │
+│                          │                │          │        │                       │                        │ archive_read_format_rar_seek_data() in                       │
+│                          │                │          │        │                       │                        │ archive_read_support_format_rar.c                            │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-5914                    │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ libxml2                  │ CVE-2025-49794 │          │        │ 2.10.4-1.amzn2023.0.9 │ 2.10.4-1.amzn2023.0.12 │ libxml: Heap use after free (UAF) leads to Denial of service │
+│                          │                │          │        │                       │                        │ (DoS)...                                                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-49794                   │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-49795 │          │        │                       │                        │ libxml: Null pointer dereference leads to Denial of service  │
+│                          │                │          │        │                       │                        │ (DoS)                                                        │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-49795                   │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-49796 │          │        │                       │                        │ libxml: Type confusion leads to Denial of service (DoS)      │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-49796                   │
+│                          ├────────────────┤          │        │                       ├────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-6021  │          │        │                       │ 2.10.4-1.amzn2023.0.11 │ libxml2: Integer Overflow in xmlBuildQName() Leads to Stack  │
+│                          │                │          │        │                       │                        │ Buffer Overflow in libxml2...                                │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-6021                    │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ python3                  │ CVE-2024-12718 │          │        │ 3.9.21-1.amzn2023.0.3 │ 3.9.23-1.amzn2023.0.1  │ cpython: python: Bypass extraction filter to modify file     │
+│                          │                │          │        │                       │                        │ metadata outside extraction directory...                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2024-12718                   │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4138  │          │        │                       │                        │ cpython: python: Bypassing extraction filter to create       │
+│                          │                │          │        │                       │                        │ symlinks to arbitrary targets outside...                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4138                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4330  │          │        │                       │                        │ cpython: python: Extraction filter bypass for linking        │
+│                          │                │          │        │                       │                        │ outside extraction directory                                 │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4330                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4435  │          │        │                       │                        │ cpython: Tarfile extracts filtered members when errorlevel=0 │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4435                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4517  │          │        │                       │                        │ python: cpython: Arbitrary writes via tarfile realpath       │
+│                          │                │          │        │                       │                        │ overflow                                                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4517                    │
+│                          ├────────────────┤          │        │                       ├────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-8194  │          │        │                       │ 3.9.23-1.amzn2023.0.3  │ cpython: Cpython infinite loop when parsing a tarfile        │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-8194                    │
+├──────────────────────────┼────────────────┤          │        │                       ├────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ python3-libs             │ CVE-2024-12718 │          │        │                       │ 3.9.23-1.amzn2023.0.1  │ cpython: python: Bypass extraction filter to modify file     │
+│                          │                │          │        │                       │                        │ metadata outside extraction directory...                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2024-12718                   │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4138  │          │        │                       │                        │ cpython: python: Bypassing extraction filter to create       │
+│                          │                │          │        │                       │                        │ symlinks to arbitrary targets outside...                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4138                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4330  │          │        │                       │                        │ cpython: python: Extraction filter bypass for linking        │
+│                          │                │          │        │                       │                        │ outside extraction directory                                 │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4330                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4435  │          │        │                       │                        │ cpython: Tarfile extracts filtered members when errorlevel=0 │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4435                    │
+│                          ├────────────────┤          │        │                       │                        ├──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-4517  │          │        │                       │                        │ python: cpython: Arbitrary writes via tarfile realpath       │
+│                          │                │          │        │                       │                        │ overflow                                                     │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-4517                    │
+│                          ├────────────────┤          │        │                       ├────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                          │ CVE-2025-8194  │          │        │                       │ 3.9.23-1.amzn2023.0.3  │ cpython: Cpython infinite loop when parsing a tarfile        │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-8194                    │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ python3-setuptools-wheel │ CVE-2025-47273 │          │        │ 59.6.0-2.amzn2023.0.5 │ 59.6.0-2.amzn2023.0.6  │ setuptools: Path Traversal Vulnerability in setuptools       │
+│                          │                │          │        │                       │                        │ PackageIndex                                                 │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2025-47273                   │
+├──────────────────────────┼────────────────┤          │        ├───────────────────────┼────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ sqlite-libs              │ CVE-2022-46908 │          │        │ 3.40.0-1.amzn2023.0.4 │ 3.40.0-1.amzn2023.0.5  │ sqlite: safe mode authorizer callback allows disallowed UDFs │
+│                          │                │          │        │                       │                        │ https://avd.aquasec.com/nvd/cve-2022-46908                   │
+└──────────────────────────┴────────────────┴──────────┴────────┴───────────────────────┴────────────────────────┴──────────────────────────────────────────────────────────────┘
+
+Python (python-pkg)
+===================
+Total: 5 (HIGH: 4, CRITICAL: 1)
+
+┌───────────────────────┬────────────────┬──────────┬──────────┬───────────────────┬────────────────────────┬─────────────────────────────────────────────────────────┐
+│        Library        │ Vulnerability  │ Severity │  Status  │ Installed Version │     Fixed Version      │                          Title                          │
+├───────────────────────┼────────────────┼──────────┼──────────┼───────────────────┼────────────────────────┼─────────────────────────────────────────────────────────┤
+│ future (METADATA)     │ CVE-2025-50817 │ HIGH     │ affected │ 0.18.3            │                        │ pypi-future: Python future unintended import            │
+│                       │                │          │          │                   │                        │ https://avd.aquasec.com/nvd/cve-2025-50817              │
+├───────────────────────┼────────────────┼──────────┼──────────┼───────────────────┼────────────────────────┼─────────────────────────────────────────────────────────┤
+│ h11 (METADATA)        │ CVE-2025-43859 │ CRITICAL │ fixed    │ 0.14.0            │ 0.16.0                 │ h11: h11 accepts some malformed Chunked-Encoding bodies │
+│                       │                │          │          │                   │                        │ https://avd.aquasec.com/nvd/cve-2025-43859              │
+├───────────────────────┼────────────────┼──────────┤          ├───────────────────┼────────────────────────┼─────────────────────────────────────────────────────────┤
+│ protobuf (METADATA)   │ CVE-2025-4565  │ HIGH     │          │ 3.19.6            │ 4.25.8, 5.29.5, 6.31.1 │ python-protobuf: Unbounded recursion in Python Protobuf │
+│                       │                │          │          │                   │                        │ https://avd.aquasec.com/nvd/cve-2025-4565               │
+├───────────────────────┼────────────────┤          │          ├───────────────────┼────────────────────────┼─────────────────────────────────────────────────────────┤
+│ setuptools (METADATA) │ CVE-2024-6345  │          │          │ 65.5.1            │ 70.0.0                 │ pypa/setuptools: Remote code execution via download     │
+│                       │                │          │          │                   │                        │ functions in the package_index module in...             │
+│                       │                │          │          │                   │                        │ https://avd.aquasec.com/nvd/cve-2024-6345               │
+│                       ├────────────────┤          │          │                   ├────────────────────────┼─────────────────────────────────────────────────────────┤
+│                       │ CVE-2025-47273 │          │          │                   │ 78.1.1                 │ setuptools: Path Traversal Vulnerability in setuptools  │
+│                       │                │          │          │                   │                        │ PackageIndex                                            │
+│                       │                │          │          │                   │                        │ https://avd.aquasec.com/nvd/cve-2025-47273              │
+└───────────────────────┴────────────────┴──────────┴──────────┴───────────────────┴────────────────────────┴─────────────────────────────────────────────────────────┘
+
+usr/share/filebeat/bin/filebeat (gobinary)
+==========================================
+Total: 64 (HIGH: 59, CRITICAL: 5)
+
+┌──────────────────────────────────┬─────────────────────┬──────────┬────────┬────────────────────────────────────┬───────────────────────────────────┬──────────────────────────────────────────────────────────────┐
+│             Library              │    Vulnerability    │ Severity │ Status │         Installed Version          │           Fixed Version           │                            Title                             │
+├──────────────────────────────────┼─────────────────────┼──────────┼────────┼────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ github.com/containerd/containerd │ CVE-2022-23648      │ HIGH     │ fixed  │ v1.3.3                             │ 1.4.13, 1.5.10, 1.6.1             │ containerd: insecure handling of image volumes               │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-23648                   │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ github.com/docker/distribution   │ CVE-2023-2253       │          │        │ v2.7.1+incompatible                │ 2.8.2-beta.1                      │ distribution/distribution: DoS from malicious API request    │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-2253                    │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ github.com/gogo/protobuf         │ CVE-2021-3121       │          │        │ v1.3.1                             │ 1.3.2                             │ gogo/protobuf: plugin/unmarshal/unmarshal.go lacks certain   │
+│                                  │                     │          │        │                                    │                                   │ index validation                                             │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-3121                    │
+├──────────────────────────────────┼─────────────────────┼──────────┤        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ golang.org/x/crypto              │ CVE-2024-45337      │ CRITICAL │        │ v0.0.0-20200510223506-06a226fb4e37 │ 0.31.0                            │ golang.org/x/crypto/ssh: Misuse of                           │
+│                                  │                     │          │        │                                    │                                   │ ServerConfig.PublicKeyCallback may cause authorization       │
+│                                  │                     │          │        │                                    │                                   │ bypass in golang.org/x/crypto                                │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2024-45337                   │
+│                                  ├─────────────────────┼──────────┤        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2020-29652      │ HIGH     │        │                                    │ 0.0.0-20201216223049-8b5274cf687f │ golang: crypto/ssh: crafted authentication request can lead  │
+│                                  │                     │          │        │                                    │                                   │ to nil pointer dereference                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2020-29652                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-43565      │          │        │                                    │ 0.0.0-20211202192323-5770296d904e │ golang.org/x/crypto: empty plaintext packet causes panic     │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-43565                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-27191      │          │        │                                    │ 0.0.0-20220314234659-1baeb1ce4c0b │ golang: crash in a golang.org/x/crypto/ssh server            │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-27191                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2025-22869      │          │        │                                    │ 0.35.0                            │ golang.org/x/crypto/ssh: Denial of Service in the Key        │
+│                                  │                     │          │        │                                    │                                   │ Exchange of golang.org/x/crypto/ssh                          │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2025-22869                   │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ golang.org/x/net                 │ CVE-2021-33194      │          │        │ v0.0.0-20200202094626-16171245cfb2 │ 0.0.0-20210520170846-37e1c6afe023 │ golang: x/net/html: infinite loop in ParseFragment           │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-33194                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-27664      │          │        │                                    │ 0.0.0-20220906165146-f3363e06e74c │ golang: net/http: handle server errors after sending GOAWAY  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-27664                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41723      │          │        │                                    │ 0.7.0                             │ golang.org/x/net/http2: avoid quadratic complexity in HPACK  │
+│                                  │                     │          │        │                                    │                                   │ decoding                                                     │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41723                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-39325      │          │        │                                    │ 0.17.0                            │ golang: net/http, x/net/http2: rapid stream resets can cause │
+│                                  │                     │          │        │                                    │                                   │ excessive work (CVE-2023-44487)                              │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-39325                   │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ golang.org/x/oauth2              │ CVE-2025-22868      │          │        │ v0.0.0-20200107190931-bf48bf16ab8d │ 0.27.0                            │ golang.org/x/oauth2/jws: Unexpected memory consumption       │
+│                                  │                     │          │        │                                    │                                   │ during token parsing in golang.org/x/oauth2/jws              │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2025-22868                   │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ golang.org/x/text                │ CVE-2021-38561      │          │        │ v0.3.2                             │ 0.3.7                             │ golang: out-of-bounds read in golang.org/x/text/language     │
+│                                  │                     │          │        │                                    │                                   │ leads to DoS                                                 │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-38561                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-32149      │          │        │                                    │ 0.3.8                             │ golang: golang.org/x/text/language: ParseAcceptLanguage      │
+│                                  │                     │          │        │                                    │                                   │ takes a long time to parse complex tags                      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-32149                   │
+├──────────────────────────────────┼─────────────────────┤          │        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ google.golang.org/grpc           │ GHSA-m425-mq94-257g │          │        │ v1.29.1                            │ 1.56.3, 1.57.1, 1.58.3            │ gRPC-Go HTTP/2 Rapid Reset vulnerability                     │
+│                                  │                     │          │        │                                    │                                   │ https://github.com/advisories/GHSA-m425-mq94-257g            │
+├──────────────────────────────────┼─────────────────────┼──────────┤        ├────────────────────────────────────┼───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│ stdlib                           │ CVE-2022-23806      │ CRITICAL │        │ v1.14.12                           │ 1.16.14, 1.17.7                   │ golang: crypto/elliptic: IsOnCurve returns true for invalid  │
+│                                  │                     │          │        │                                    │                                   │ field elements                                               │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-23806                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24538      │          │        │                                    │ 1.19.8, 1.20.3                    │ golang: html/template: backticks not treated as string       │
+│                                  │                     │          │        │                                    │                                   │ delimiters                                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24538                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24540      │          │        │                                    │ 1.19.9, 1.20.4                    │ golang: html/template: improper handling of JavaScript       │
+│                                  │                     │          │        │                                    │                                   │ whitespace                                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24540                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2024-24790      │          │        │                                    │ 1.21.11, 1.22.4                   │ golang: net/netip: Unexpected behavior from Is methods for   │
+│                                  │                     │          │        │                                    │                                   │ IPv4-mapped IPv6 addresses                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2024-24790                   │
+│                                  ├─────────────────────┼──────────┤        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-27918      │ HIGH     │        │                                    │ 1.15.9, 1.16.1                    │ golang: encoding/xml: infinite loop when using               │
+│                                  │                     │          │        │                                    │                                   │ xml.NewTokenDecoder with a custom TokenReader                │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-27918                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-33195      │          │        │                                    │ 1.15.13, 1.16.5                   │ golang: net: lookup functions may return invalid host names  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-33195                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-33196      │          │        │                                    │                                   │ golang: archive/zip: malformed archive may cause panic or    │
+│                                  │                     │          │        │                                    │                                   │ memory exhaustion                                            │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-33196                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-33198      │          │        │                                    │                                   │ golang: math/big.Rat: may cause a panic or an unrecoverable  │
+│                                  │                     │          │        │                                    │                                   │ fatal error if...                                            │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-33198                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-39293      │          │        │                                    │ 1.16.8, 1.17.1                    │ golang: archive/zip: malformed archive may cause panic or    │
+│                                  │                     │          │        │                                    │                                   │ memory exhaustion (incomplete fix...                         │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-39293                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-41771      │          │        │                                    │ 1.16.10, 1.17.3                   │ golang: debug/macho: invalid dynamic symbol table command    │
+│                                  │                     │          │        │                                    │                                   │ can cause panic                                              │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-41771                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-41772      │          │        │                                    │                                   │ golang: archive/zip: Reader.Open panics on empty string      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-41772                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2021-44716      │          │        │                                    │ 1.16.12, 1.17.5                   │ golang: net/http: limit growth of header canonicalization    │
+│                                  │                     │          │        │                                    │                                   │ cache                                                        │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2021-44716                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-23772      │          │        │                                    │ 1.16.14, 1.17.7                   │ golang: math/big: uncontrolled memory consumption due to an  │
+│                                  │                     │          │        │                                    │                                   │ unhandled overflow via Rat.SetString...                      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-23772                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-24675      │          │        │                                    │ 1.17.9, 1.18.1                    │ golang: encoding/pem: fix stack overflow in Decode           │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-24675                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-24921      │          │        │                                    │ 1.16.15, 1.17.8                   │ golang: regexp: stack exhaustion via a deeply nested         │
+│                                  │                     │          │        │                                    │                                   │ expression                                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-24921                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-27664      │          │        │                                    │ 1.18.6, 1.19.1                    │ golang: net/http: handle server errors after sending GOAWAY  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-27664                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-28131      │          │        │                                    │ 1.17.12, 1.18.4                   │ golang: encoding/xml: stack exhaustion in Decoder.Skip       │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-28131                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-28327      │          │        │                                    │ 1.17.9, 1.18.1                    │ golang: crypto/elliptic: panic caused by oversized scalar    │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-28327                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-2879       │          │        │                                    │ 1.18.7, 1.19.2                    │ golang: archive/tar: github.com/vbatts/tar-split: unbounded  │
+│                                  │                     │          │        │                                    │                                   │ memory consumption when reading headers                      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-2879                    │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-2880       │          │        │                                    │                                   │ golang: net/http/httputil: ReverseProxy should not forward   │
+│                                  │                     │          │        │                                    │                                   │ unparseable query parameters                                 │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-2880                    │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-29804      │          │        │                                    │ 1.17.11, 1.18.3                   │ ELSA-2022-17957: ol8addon security update (IMPORTANT)        │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-29804                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30580      │          │        │                                    │                                   │ golang: os/exec: Code injection in Cmd.Start                 │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30580                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30630      │          │        │                                    │ 1.17.12, 1.18.4                   │ golang: io/fs: stack exhaustion in Glob                      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30630                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30631      │          │        │                                    │                                   │ golang: compress/gzip: stack exhaustion in Reader.Read       │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30631                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30632      │          │        │                                    │                                   │ golang: path/filepath: stack exhaustion in Glob              │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30632                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30633      │          │        │                                    │                                   │ golang: encoding/xml: stack exhaustion in Unmarshal          │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30633                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30634      │          │        │                                    │ 1.17.11, 1.18.3                   │ ELSA-2022-17957: ol8addon security update (IMPORTANT)        │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30634                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-30635      │          │        │                                    │ 1.17.12, 1.18.4                   │ golang: encoding/gob: stack exhaustion in Decoder.Decode     │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-30635                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-32189      │          │        │                                    │ 1.17.13, 1.18.5                   │ golang: math/big: decoding big.Float and big.Rat types can   │
+│                                  │                     │          │        │                                    │                                   │ panic if the encoded...                                      │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-32189                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41715      │          │        │                                    │ 1.18.7, 1.19.2                    │ golang: regexp/syntax: limit memory used by parsing regexps  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41715                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41716      │          │        │                                    │ 1.18.8, 1.19.3                    │ Due to unsanitized NUL values, attackers may be able to      │
+│                                  │                     │          │        │                                    │                                   │ maliciously se...                                            │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41716                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41720      │          │        │                                    │ 1.18.9, 1.19.4                    │ golang: os, net/http: avoid escapes from os.DirFS and        │
+│                                  │                     │          │        │                                    │                                   │ http.Dir on Windows                                          │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41720                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41722      │          │        │                                    │ 1.19.6, 1.20.1                    │ golang: path/filepath: path-filepath filepath.Clean path     │
+│                                  │                     │          │        │                                    │                                   │ traversal                                                    │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41722                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41723      │          │        │                                    │                                   │ golang.org/x/net/http2: avoid quadratic complexity in HPACK  │
+│                                  │                     │          │        │                                    │                                   │ decoding                                                     │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41723                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41724      │          │        │                                    │                                   │ golang: crypto/tls: large handshake records may cause panics │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41724                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2022-41725      │          │        │                                    │                                   │ golang: net/http, mime/multipart: denial of service from     │
+│                                  │                     │          │        │                                    │                                   │ excessive resource consumption                               │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2022-41725                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24534      │          │        │                                    │ 1.19.8, 1.20.3                    │ golang: net/http, net/textproto: denial of service from      │
+│                                  │                     │          │        │                                    │                                   │ excessive memory allocation                                  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24534                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24536      │          │        │                                    │                                   │ golang: net/http, net/textproto, mime/multipart: denial of   │
+│                                  │                     │          │        │                                    │                                   │ service from excessive resource consumption                  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24536                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24537      │          │        │                                    │                                   │ golang: go/parser: Infinite loop in parsing                  │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24537                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-24539      │          │        │                                    │ 1.19.9, 1.20.4                    │ golang: html/template: improper sanitization of CSS values   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-24539                   │
+│                                  ├─────────────────────┤          │        │                                    │                                   ├──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-29400      │          │        │                                    │                                   │ golang: html/template: improper handling of empty HTML       │
+│                                  │                     │          │        │                                    │                                   │ attributes                                                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-29400                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-29403      │          │        │                                    │ 1.19.10, 1.20.5                   │ golang: runtime: unexpected behavior of setuid/setgid        │
+│                                  │                     │          │        │                                    │                                   │ binaries                                                     │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-29403                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-39325      │          │        │                                    │ 1.20.10, 1.21.3                   │ golang: net/http, x/net/http2: rapid stream resets can cause │
+│                                  │                     │          │        │                                    │                                   │ excessive work (CVE-2023-44487)                              │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-39325                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-45283      │          │        │                                    │ 1.20.11, 1.21.4, 1.20.12, 1.21.5  │ The filepath package does not recognize paths with a \??\    │
+│                                  │                     │          │        │                                    │                                   │ prefix as...                                                 │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-45283                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-45287      │          │        │                                    │ 1.20.0                            │ golang: crypto/tls: Timing Side Channel attack in RSA based  │
+│                                  │                     │          │        │                                    │                                   │ TLS key exchanges....                                        │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-45287                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2023-45288      │          │        │                                    │ 1.21.9, 1.22.2                    │ golang: net/http, x/net/http2: unlimited number of           │
+│                                  │                     │          │        │                                    │                                   │ CONTINUATION frames causes DoS                               │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2023-45288                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2024-34156      │          │        │                                    │ 1.22.7, 1.23.1                    │ encoding/gob: golang: Calling Decoder.Decode on a message    │
+│                                  │                     │          │        │                                    │                                   │ which contains deeply nested structures...                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2024-34156                   │
+│                                  ├─────────────────────┤          │        │                                    ├───────────────────────────────────┼──────────────────────────────────────────────────────────────┤
+│                                  │ CVE-2025-47907      │          │        │                                    │ 1.23.12, 1.24.6                   │ database/sql: Postgres Scan Race Condition                   │
+│                                  │                     │          │        │                                    │                                   │ https://avd.aquasec.com/nvd/cve-2025-47907                   │
+└──────────────────────────────────┴─────────────────────┴──────────┴────────┴────────────────────────────────────┴───────────────────────────────────┴──────────────────────────────────────────────────────────────┘
+
+/var/ossec/data_tmp/permanent/var/ossec/etc/sslmanager.key (secrets)
+====================================================================
+Total: 1 (HIGH: 1, CRITICAL: 0)
+
+HIGH: AsymmetricPrivateKey (private-key)
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Asymmetric Private Key
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ /var/ossec/data_tmp/permanent/var/ossec/etc/sslmanager.key:2-27 (added by 'RUN |7 WAZUH_VERSION=4.12.0 WAZUH_TAG_RE')
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1   -----BEGIN PRIVATE KEY-----
+   2 ┌ ****************************************************************
+   3 │ ****************************************************************
+   4 │ ****************************************************************
+   5 │ ****************************************************************
+   6 │ ****************************************************************
+   7 │ ****************************************************************
+   8 │ ****************************************************************
+   9 │ ****************************************************************
+  10 │ ****************************************************************
+  11 │ ****************************************************************
+  12 │ ****************************************************************
+  13 │ ****************************************************************
+  14 │ ****************************************************************
+  15 │ ****************************************************************
+  16 │ ****************************************************************
+  17 │ ****************************************************************
+  18 │ ****************************************************************
+  19 │ ****************************************************************
+  20 │ ****************************************************************
+  21 │ ****************************************************************
+  22 │ ****************************************************************
+  23 │ ****************************************************************
+  24 │ ****************************************************************
+  25 │ ****************************************************************
+  26 │ ****************************************************************
+  27 └ ************************
+  28   -----END PRIVATE KEY-----
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+/var/ossec/etc/sslmanager.key (secrets)
+=======================================
+Total: 1 (HIGH: 1, CRITICAL: 0)
+
+HIGH: AsymmetricPrivateKey (private-key)
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Asymmetric Private Key
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ /var/ossec/etc/sslmanager.key:2-27 (added by 'RUN |7 WAZUH_VERSION=4.12.0 WAZUH_TAG_RE')
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1   -----BEGIN PRIVATE KEY-----
+   2 ┌ ****************************************************************
+   3 │ ****************************************************************
+   4 │ ****************************************************************
+   5 │ ****************************************************************
+   6 │ ****************************************************************
+   7 │ ****************************************************************
+   8 │ ****************************************************************
+   9 │ ****************************************************************
+  10 │ ****************************************************************
+  11 │ ****************************************************************
+  12 │ ****************************************************************
+  13 │ ****************************************************************
+  14 │ ****************************************************************
+  15 │ ****************************************************************
+  16 │ ****************************************************************
+  17 │ ****************************************************************
+  18 │ ****************************************************************
+  19 │ ****************************************************************
+  20 │ ****************************************************************
+  21 │ ****************************************************************
+  22 │ ****************************************************************
+  23 │ ****************************************************************
+  24 │ ****************************************************************
+  25 │ ****************************************************************
+  26 │ ****************************************************************
+  27 └ ************************
+  28   -----END PRIVATE KEY-----
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
