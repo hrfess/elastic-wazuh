@@ -1,0 +1,28 @@
+---
+- name: Ensure Docker service is running
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: Setup Wazuh directory
+  ansible.builtin.file:
+    path: /home/server/wazuh_env
+    state: directory
+    mode: '0755'  # Optional file permissions
+    owner: server  # Optional ownership
+    group: server  # Optional group ownership
+
+- name: Copy compose from template to host
+  ansible.builtin.template:
+    src: "templates/stack.yml"
+    dest: "/home/server/wazuh_env"
+    mode: '0755'  # Optional file permissions
+    owner: server  # Optional ownership
+    group: server  # Optional group ownership
+
+- name: Deploy Wazuh stack
+  ansible.builtin.command:
+    cmd: sudo docker stack deploy -c /home/server/wazuh_env/stack.yml wazuh
+  register: swarm_check
+  changed_when: false

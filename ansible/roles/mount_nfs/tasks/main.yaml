@@ -1,0 +1,92 @@
+---
+- name: Ensure NFS client packages are installed
+  apt:
+    name: nfs-common
+    state: present
+  become: true
+  tags: nfs
+
+- name: Ensure mount points exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /mnt/nfs_data
+    - /mnt/nfs_conf
+  become: true
+
+- name: Mount NFS data share
+  mount:
+    path: /mnt/nfs_data
+    src: "{{ nfs_server }}:/mnt/wazuh/data"
+    fstype: nfs
+    opts: defaults
+    state: mounted
+  become: true
+
+- name: Mount NFS conf share
+  mount:
+    path: /mnt/nfs_conf
+    src: "{{ nfs_server }}:/mnt/wazuh/config"
+    fstype: nfs
+    opts: defaults
+    state: mounted
+  become: true
+
+# ---------- First deployment only ----------
+- name: Copy configs to /mnt/nfs_conf/
+  copy:
+    src: "templates/configs/"
+    dest: "/mnt/nfs_conf/"
+    owner: server
+    group: server
+    mode: "0755"
+  become: true
+  when: first_deployment | default(false)
+
+- name: Copy security to /mnt/nfs_conf/
+  copy:
+    src: "templates/security/"  
+    dest: "/mnt/nfs_conf/"
+    owner: server
+    group: server
+    mode: "0755"
+  become: true
+  when: first_deployment | default(false)
+
+# ---------- Directory tree ----------
+- name: Create wazuh data directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: server
+    group: server
+    mode: "0755"
+  loop:
+    - /mnt/nfs_data/master-wazuh-api-configuration
+    - /mnt/nfs_data/master-wazuh-etc
+    - /mnt/nfs_data/master-wazuh-logs
+    - /mnt/nfs_data/master-wazuh-queue
+    - /mnt/nfs_data/master-wazuh-var-multigroups
+    - /mnt/nfs_data/master-wazuh-integrations
+    - /mnt/nfs_data/master-wazuh-active-response
+    - /mnt/nfs_data/master-wazuh-agentless
+    - /mnt/nfs_data/master-wazuh-wodles
+    - /mnt/nfs_data/master-filebeat-etc
+    - /mnt/nfs_data/master-filebeat-var
+    - /mnt/nfs_data/worker-wazuh-api-configuration
+    - /mnt/nfs_data/worker-wazuh-etc
+    - /mnt/nfs_data/worker-wazuh-logs
+    - /mnt/nfs_data/worker-wazuh-queue
+    - /mnt/nfs_data/worker-wazuh-var-multigroups
+    - /mnt/nfs_data/worker-wazuh-integrations
+    - /mnt/nfs_data/worker-wazuh-active-response
+    - /mnt/nfs_data/worker-wazuh-agentless
+    - /mnt/nfs_data/worker-wazuh-wodles
+    - /mnt/nfs_data/worker-filebeat-etc
+    - /mnt/nfs_data/worker-filebeat-var
+    - /mnt/nfs_data/wazuh-indexer-data-1
+    - /mnt/nfs_data/wazuh-dashboard-config
+    - /mnt/nfs_data/wazuh-dashboard-custom
+  become: true
+  when: first_deployment | default(false)

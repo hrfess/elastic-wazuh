@@ -1,0 +1,203 @@
+---
+version: "3.8"
+
+services:
+  reverse-proxy:
+    image: stack-reverse-proxy
+    env_file:
+      - /mnt/nfs_conf/configs/nginx/.env
+    volumes:
+      - /mnt/nfs_conf/configs/nginx/nginx:/etc/nginx/
+      - /mnt/nfs_conf/configs/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+      - "1514:1514"
+      - "1515:1515"
+    networks:
+      - management
+      - frontend
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.role == resolvable
+      #restart_policy:
+        #condition: unless-stopped
+    depends_on:
+      - master
+      - worker
+      - dashboard
+
+  master:
+    image: wazuh/wazuh-manager:4.12.0
+    hostname: wazuh.master
+    networks:
+      - backend
+      - frontend
+      - management
+      - indexer
+    env_file:
+      - /mnt/nfs_conf/security/master/secrets.env
+    environment:
+      - FILEBEAT_SSL_VERIFICATION_MODE=full
+      - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
+      - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
+      - SSL_KEY=/etc/ssl/filebeat.key
+    volumes:
+      - /mnt/nfs_data/master-wazuh-api-configuration:/var/ossec/api/configuration
+      - /mnt/nfs_data/master-wazuh-etc:/var/ossec/etc
+      - /mnt/nfs_data/master-wazuh-logs:/var/ossec/logs
+      - /mnt/nfs_data/master-wazuh-queue:/var/ossec/queue
+      - /mnt/nfs_data/master-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - /mnt/nfs_data/master-wazuh-integrations:/var/ossec/integrations
+      - /mnt/nfs_data/master-wazuh-active-response:/var/ossec/active-response/bin
+      - /mnt/nfs_data/master-wazuh-agentless:/var/ossec/agentless
+      - /mnt/nfs_data/master-wazuh-wodles:/var/ossec/wodles
+      - /mnt/nfs_data/master-filebeat-etc:/etc/filebeat
+      - /mnt/nfs_data/master-filebeat-var:/var/lib/filebeat
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.master.pem:/etc/ssl/filebeat.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.master-key.pem:/etc/ssl/filebeat.key
+      - /mnt/nfs_conf/configs/wazuh_cluster/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+          #    - node.labels.wazuh.role == master
+      resources:
+        limits:
+          memory: 5G
+        reservations:
+          memory: 4G
+      #restart_policy:
+        #condition: unless-stopped
+
+  worker:
+    image: wazuh/wazuh-manager:4.12.0
+    hostname: wazuh.worker
+    networks:
+      - frontend
+      - management
+      - backend
+      - indexer
+    env_file:
+      - /mnt/nfs_conf/security/worker/secrets.env
+    environment:
+      - FILEBEAT_SSL_VERIFICATION_MODE=full
+      - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
+      - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
+      - SSL_KEY=/etc/ssl/filebeat.key
+    volumes:
+      - /mnt/nfs_data/worker-wazuh-api-configuration:/var/ossec/api/configuration
+      - /mnt/nfs_data/worker-wazuh-etc:/var/ossec/etc
+      - /mnt/nfs_data/worker-wazuh-logs:/var/ossec/logs
+      - /mnt/nfs_data/worker-wazuh-queue:/var/ossec/queue
+      - /mnt/nfs_data/worker-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - /mnt/nfs_data/worker-wazuh-integrations:/var/ossec/integrations
+      - /mnt/nfs_data/worker-wazuh-active-response:/var/ossec/active-response/bin
+      - /mnt/nfs_data/worker-wazuh-agentless:/var/ossec/agentless
+      - /mnt/nfs_data/worker-wazuh-wodles:/var/ossec/wodles
+      - /mnt/nfs_data/worker-filebeat-etc:/etc/filebeat
+      - /mnt/nfs_data/worker-filebeat-var:/var/lib/filebeat
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.worker.pem:/etc/ssl/filebeat.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.worker-key.pem:/etc/ssl/filebeat.key
+      - /mnt/nfs_conf/configs/wazuh_cluster/wazuh_worker.conf:/wazuh-config-mount/etc/ossec.conf
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == worker
+      resources:
+        limits:
+          memory: 3G
+        reservations:
+          memory: 3G
+      #restart_policy:
+        #condition: unless-stopped
+
+  indexer1:
+    image: wazuh/wazuh-indexer:4.12.0
+    hostname: wazuh1.indexer
+    networks:
+      - indexer
+      - frontend
+      - backend
+      - management
+    environment:
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "bootstrap.memory_lock=true"
+    volumes:
+      - /mnt/nfs_data/wazuh-indexer-data-1:/var/lib/wazuh-indexer
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-indexer/certs/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh1.indexer-key.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.key
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh1.indexer.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/admin.pem:/usr/share/wazuh-indexer/certs/admin.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/admin-key.pem:/usr/share/wazuh-indexer/certs/admin-key.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer/wazuh1.indexer.yml:/usr/share/wazuh-indexer/opensearch.yml
+      - /mnt/nfs_conf/configs/wazuh_indexer/internal_users.yml:/usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == indexer
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 6G
+      #restart_policy:
+        #condition: unless-stopped
+
+  dashboard:
+    image: wazuh/wazuh-dashboard:4.12.0
+    hostname: wazuh.dashboard
+    networks:
+      - frontend
+      - management
+      - indexer
+    env_file:
+      - /mnt/nfs_conf/security/dashboard/secrets.env
+    volumes:
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-dashboard/certs/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_dashboard/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
+      - /mnt/nfs_conf/configs/wazuh_dashboard/wazuh.yml:/usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
+      - /mnt/nfs_data/wazuh-dashboard-config:/usr/share/wazuh-dashboard/data/wazuh/config
+      - /mnt/nfs_data/wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == dashboard
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+      #restart_policy:
+        #condition: unless-stopped
+    depends_on:
+      - indexer1
+volumes:
+  master-wazuh-queue:
+  worker-wazuh-queue:
+  master-wazuh-var-multigroups:
+  worker-wazuh-var-multigroups:
+
+
+networks:
+  backend:
+    driver: overlay
+    attachable: true
+  frontend:
+    driver: overlay
+    attachable: true
+  management:
+    driver: overlay
+    attachable: true
+  indexer:
+    driver: overlay
+    attachable: true

@@ -1,0 +1,15 @@
+# ansible vars
+ansible_user: server
+ansible_become: true
+ansible_become_method: sudo
+
+# nfs vars
+nfs_server: 192.168.42.81
+
+nfs_mounts:
+  - { share: "/mnt/wazuh/data",  mount_point: "/mnt/nfs_data" }
+  - { share: "/mnt/wazuh/config", mount_point: "/mnt/nfs_conf" }
+
+# portainer vars
+wazuh_data: /mnt/nfs_data
+wazuh_conf: /mnt/nfs_conf

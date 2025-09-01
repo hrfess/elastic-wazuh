@@ -1,0 +1,5 @@
+#!/bin/bash
+list=$(ls ./roles)
+for a in $list; do
+	mkdir roles/$a/vars
+done
