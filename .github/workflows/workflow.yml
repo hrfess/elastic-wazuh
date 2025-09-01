@@ -23,7 +23,7 @@ jobs:
           failed=0
 
           # Find all images declared in the repo (adjust grep path as needed)
-          images=$(grep -rhoP 'image:\s*\K\S+' ../wazuh/prototype/wazuh-docker_test/multi-node/ | sort -u)
+          images=$(grep -rhoP 'image:\s*\K\S+' ../stack/stack.yml | sort -u)
 
           for img in $images; do
             echo "🔍 Processing $img ..."

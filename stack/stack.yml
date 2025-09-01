@@ -5,10 +5,10 @@ services:
   reverse-proxy:
     image: stack-reverse-proxy
     env_file:
-      - ../configs/nginx/.env
+      - /mnt/nfs_conf/configs/nginx/.env
     volumes:
-      - ../configs/nginx/nginx:/etc/nginx/
-      - ../configs/nginx/letsencrypt:/etc/letsencrypt
+      - /mnt/nfs_conf/configs/nginx/nginx:/etc/nginx/
+      - /mnt/nfs_conf/configs/nginx/letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
       - "443:443"
@@ -38,28 +38,28 @@ services:
       - management
       - indexer
     env_file:
-      - ../security/master/secrets.env
+      - /mnt/nfs_conf/security/master/secrets.env
     environment:
       - FILEBEAT_SSL_VERIFICATION_MODE=full
       - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
       - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
       - SSL_KEY=/etc/ssl/filebeat.key
     volumes:
-      - master-wazuh-api-configuration:/var/ossec/api/configuration
-      - master-wazuh-etc:/var/ossec/etc
-      - master-wazuh-logs:/var/ossec/logs
-      - master-wazuh-queue:/var/ossec/queue
-      - master-wazuh-var-multigroups:/var/ossec/var/multigroups
-      - master-wazuh-integrations:/var/ossec/integrations
-      - master-wazuh-active-response:/var/ossec/active-response/bin
-      - master-wazuh-agentless:/var/ossec/agentless
-      - master-wazuh-wodles:/var/ossec/wodles
-      - master-filebeat-etc:/etc/filebeat
-      - master-filebeat-var:/var/lib/filebeat
-      - ../configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.master.pem:/etc/ssl/filebeat.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.master-key.pem:/etc/ssl/filebeat.key
-      - ../configs/wazuh_cluster/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
+      - /mnt/nfs_data/master-wazuh-api-configuration:/var/ossec/api/configuration
+      - /mnt/nfs_data/master-wazuh-etc:/var/ossec/etc
+      - /mnt/nfs_data/master-wazuh-logs:/var/ossec/logs
+      - /mnt/nfs_data/master-wazuh-queue:/var/ossec/queue
+      - /mnt/nfs_data/master-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - /mnt/nfs_data/master-wazuh-integrations:/var/ossec/integrations
+      - /mnt/nfs_data/master-wazuh-active-response:/var/ossec/active-response/bin
+      - /mnt/nfs_data/master-wazuh-agentless:/var/ossec/agentless
+      - /mnt/nfs_data/master-wazuh-wodles:/var/ossec/wodles
+      - /mnt/nfs_data/master-filebeat-etc:/etc/filebeat
+      - /mnt/nfs_data/master-filebeat-var:/var/lib/filebeat
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.master.pem:/etc/ssl/filebeat.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.master-key.pem:/etc/ssl/filebeat.key
+      - /mnt/nfs_conf/configs/wazuh_cluster/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
     deploy:
       replicas: 1
         #placement:
@@ -82,28 +82,28 @@ services:
       - backend
       - indexer
     env_file:
-      - ../security/worker/secrets.env
+      - /mnt/nfs_conf/security/worker/secrets.env
     environment:
       - FILEBEAT_SSL_VERIFICATION_MODE=full
       - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
       - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
       - SSL_KEY=/etc/ssl/filebeat.key
     volumes:
-      - worker-wazuh-api-configuration:/var/ossec/api/configuration
-      - worker-wazuh-etc:/var/ossec/etc
-      - worker-wazuh-logs:/var/ossec/logs
-      - worker-wazuh-queue:/var/ossec/queue
-      - worker-wazuh-var-multigroups:/var/ossec/var/multigroups
-      - worker-wazuh-integrations:/var/ossec/integrations
-      - worker-wazuh-active-response:/var/ossec/active-response/bin
-      - worker-wazuh-agentless:/var/ossec/agentless
-      - worker-wazuh-wodles:/var/ossec/wodles
-      - worker-filebeat-etc:/etc/filebeat
-      - worker-filebeat-var:/var/lib/filebeat
-      - ../configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.worker.pem:/etc/ssl/filebeat.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.worker-key.pem:/etc/ssl/filebeat.key
-      - ../configs/wazuh_cluster/wazuh_worker.conf:/wazuh-config-mount/etc/ossec.conf
+      - /mnt/nfs_data/worker-wazuh-api-configuration:/var/ossec/api/configuration
+      - /mnt/nfs_data/worker-wazuh-etc:/var/ossec/etc
+      - /mnt/nfs_data/worker-wazuh-logs:/var/ossec/logs
+      - /mnt/nfs_data/worker-wazuh-queue:/var/ossec/queue
+      - /mnt/nfs_data/worker-wazuh-var-multigroups:/var/ossec/var/multigroups
+      - /mnt/nfs_data/worker-wazuh-integrations:/var/ossec/integrations
+      - /mnt/nfs_data/worker-wazuh-active-response:/var/ossec/active-response/bin
+      - /mnt/nfs_data/worker-wazuh-agentless:/var/ossec/agentless
+      - /mnt/nfs_data/worker-wazuh-wodles:/var/ossec/wodles
+      - /mnt/nfs_data/worker-filebeat-etc:/etc/filebeat
+      - /mnt/nfs_data/worker-filebeat-var:/var/lib/filebeat
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca-manager.pem:/etc/ssl/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.worker.pem:/etc/ssl/filebeat.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.worker-key.pem:/etc/ssl/filebeat.key
+      - /mnt/nfs_conf/configs/wazuh_cluster/wazuh_worker.conf:/wazuh-config-mount/etc/ossec.conf
     deploy:
       replicas: 1
         #placement:
@@ -129,14 +129,14 @@ services:
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       - "bootstrap.memory_lock=true"
     volumes:
-      - wazuh-indexer-data-1:/var/lib/wazuh-indexer
-      - ../configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-indexer/certs/root-ca.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh1.indexer-key.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.key
-      - ../configs/wazuh_indexer_ssl_certs/wazuh1.indexer.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.pem
-      - ../configs/wazuh_indexer_ssl_certs/admin.pem:/usr/share/wazuh-indexer/certs/admin.pem
-      - ../configs/wazuh_indexer_ssl_certs/admin-key.pem:/usr/share/wazuh-indexer/certs/admin-key.pem
-      - ../configs/wazuh_indexer/wazuh1.indexer.yml:/usr/share/wazuh-indexer/opensearch.yml
-      - ../configs/wazuh_indexer/internal_users.yml:/usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+      - /mnt/nfs_data/wazuh-indexer-data-1:/var/lib/wazuh-indexer
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-indexer/certs/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh1.indexer-key.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.key
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh1.indexer.pem:/usr/share/wazuh-indexer/certs/wazuh1.indexer.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/admin.pem:/usr/share/wazuh-indexer/certs/admin.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/admin-key.pem:/usr/share/wazuh-indexer/certs/admin-key.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer/wazuh1.indexer.yml:/usr/share/wazuh-indexer/opensearch.yml
+      - /mnt/nfs_conf/configs/wazuh_indexer/internal_users.yml:/usr/share/wazuh-indexer/opensearch-security/internal_users.yml
     deploy:
       replicas: 1
         #placement:
@@ -158,15 +158,15 @@ services:
       - management
       - indexer
     env_file:
-      - ../security/dashboard/secrets.env
+      - /mnt/nfs_conf/security/dashboard/secrets.env
     volumes:
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
-      - ../configs/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
-      - ../configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-dashboard/certs/root-ca.pem
-      - ../configs/wazuh_dashboard/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
-      - ../configs/wazuh_dashboard/wazuh.yml:/usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
-      - wazuh-dashboard-config:/usr/share/wazuh-dashboard/data/wazuh/config
-      - wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
+      - /mnt/nfs_conf/configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-dashboard/certs/root-ca.pem
+      - /mnt/nfs_conf/configs/wazuh_dashboard/opensearch_dashboards.yml:/usr/share/wazuh-dashboard/config/opensearch_dashboards.yml
+      - /mnt/nfs_conf/configs/wazuh_dashboard/wazuh.yml:/usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
+      - /mnt/nfs_data/wazuh-dashboard-config:/usr/share/wazuh-dashboard/data/wazuh/config
+      - /mnt/nfs_data/wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
     deploy:
       replicas: 1
         #placement:
@@ -186,143 +186,7 @@ volumes:
   worker-wazuh-queue:
   master-wazuh-var-multigroups:
   worker-wazuh-var-multigroups:
-  master-wazuh-logs:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-logs"
 
-  worker-wazuh-logs:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-logs"
-
-  master-wazuh-api-configuration:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-api-configuration"
-
-  master-wazuh-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-etc"
-
-  master-wazuh-integrations:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-integrations"
-
-  master-wazuh-agentless:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-agentless"
-
-  master-wazuh-active-response:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-active-response"
-
-  master-wazuh-wodles:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-wodles"
-
-  master-filebeat-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-filebeat-etc"
-
-  master-filebeat-var:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-filebeat-var"
-
-  worker-wazuh-api-configuration:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-api-configuration"
-
-  worker-wazuh-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-etc"
-
-  worker-wazuh-integrations:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-integrations"
-
-  worker-wazuh-agentless:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-agentless"
-
-  worker-wazuh-active-response:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-active-response"
-
-  worker-wazuh-wodles:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-wodles"
-
-  worker-filebeat-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-filebeat-etc"
-
-  worker-filebeat-var:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-filebeat-var"
-
-  wazuh-indexer-data-1:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-1"
-
-  wazuh-indexer-data-2:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-2"
-
-  wazuh-indexer-data-3:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-3"
-
-  wazuh-dashboard-config:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-dashboard-config"
-
-  wazuh-dashboard-custom:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-dashboard-custom"
 
 networks:
   backend:
