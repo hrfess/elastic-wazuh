@@ -1,0 +1,41 @@
+name: Lint YAML files
+
+on:
+  push:
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+  pull_request:
+    paths:
+      - '**/*.yml'
+      - '**/*.yaml'
+
+jobs:
+  yamllint:
+    name: Run yamllint
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install yamllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+
+      - name: Run yamllint and save to log
+        run: |
+          FILES=$(git ls-files '*.yml' '*.yaml')
+          if [ -n "$FILES" ]; then
+            yamllint $FILES | tee yamllint-report.log
+          else
+            echo "No YAML files found." | tee yamllint-report.log
+          fi
+
+      - name: Upload lint log
+        uses: actions/upload-artifact@v4
+        with:
+          name: yamllint-report
+          path: yamllint-report.log
+
