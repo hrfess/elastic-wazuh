@@ -1,0 +1,3 @@
+docker_image_name: stack-reverse-proxy
+docker_image_tag: latest
+dockerfile_name: Dockerfile

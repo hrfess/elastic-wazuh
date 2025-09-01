@@ -1,0 +1,4 @@
+*.pem
+configs/
+*acme-v02.api.letsencrypt.org*
+configs/nginx/letsencrypt/*.conf

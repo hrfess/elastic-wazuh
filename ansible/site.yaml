@@ -1,0 +1,39 @@
+---
+- name: Setup NFS server
+  hosts: all
+  become: true
+  roles:
+    - role: mount_nfs
+      vars:
+        first_deployment: false   # set to false after first run
+
+
+- name: Init Docker Swarm
+  hosts: managers[0]
+  become: true
+  roles:
+    - init_docker_swarm
+
+- name: Join Managers
+  hosts: managers
+  become: true
+  roles:
+    - manager_join_docker_swarm
+
+- name: Join Workers
+  hosts: workers
+  become: true
+  roles:
+    - worker_join_docker_swarm
+
+- name: Deploy reverse proxy image
+  hosts: all
+  become: true
+  roles:
+    - docker_build
+
+- name: Deploy wazuh
+  hosts: managers[0]
+  become: true
+  roles:
+    - wazuh_deploy

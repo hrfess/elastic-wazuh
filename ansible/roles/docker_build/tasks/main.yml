@@ -1,0 +1,15 @@
+---
+- name: Check if Docker image already exists
+  community.docker.docker_image_info:
+    name: "{{ docker_image_name }}:{{ docker_image_tag | default('latest') }}"
+  register: docker_image_info
+  become: true 
+- name: Build Docker image if not present
+  community.docker.docker_image:
+    name: "{{ docker_image_name }}"
+    tag: "{{ docker_image_tag | default('latest') }}"
+    build:
+      path: "{{ role_path }}/templates"
+      dockerfile: "{{ dockerfile_name | default('Dockerfile') }}"
+  when: docker_image_info.images | length == 0
+  become: true

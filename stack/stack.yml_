@@ -1,9 +1,10 @@
 #version: "3.8"
 services:
   reverse-proxy:
-    build: 
-      dockerfile: docker/nginx/Dockerfile
-      context: ..
+    image: stack-reverse-proxy
+      # build: 
+      # dockerfile: docker/nginx/Dockerfile
+        #  context: ..
     env_file:
       - ../configs/nginx/.env
     volumes:
@@ -13,7 +14,6 @@ services:
       - "80:80"
       - "443:443"
       - "1514:1514"
-      - "1515:1515"
     networks:
       - management
       - frontend
@@ -27,7 +27,7 @@ services:
         # - node.labels.role == resolvable
   master:
     image: wazuh/wazuh-manager:4.12.0
-    hostname: wazuh.master
+    hostname: master
     restart: always
     ulimits:
       memlock:
@@ -39,17 +39,19 @@ services:
           # ports:
         #  - "514:514/udp" for syslog
     networks:
-      - backend
       - frontend #agents' conn. and enroll. loadbalancing
       - management # restful api
       - indexer
-    env_file: 
-      - ../security/master/secrets.env
     environment:
+      - INDEXER_URL=https://indexer1:9200
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=SecretPassword
       - FILEBEAT_SSL_VERIFICATION_MODE=full
       - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
       - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
       - SSL_KEY=/etc/ssl/filebeat.key
+      - API_USERNAME=wazuh-wui
+      - API_PASSWORD=MyS3cr37P450r.*-
     volumes:
       - master-wazuh-api-configuration:/var/ossec/api/configuration
       - master-wazuh-etc:/var/ossec/etc
@@ -69,13 +71,8 @@ services:
 
   worker:
     image: wazuh/wazuh-manager:4.12.0
-    hostname: wazuh.worker
+    hostname: worker
     restart: always
-    networks:
-      - frontend
-      - management
-      - backend      
-      - indexer
     ulimits:
       memlock:
         soft: -1
@@ -83,9 +80,10 @@ services:
       nofile:
         soft: 655360
         hard: 655360
-    env_file:
-      - ../security/worker/secrets.env
     environment:
+      - INDEXER_URL=https://indexer1:9200
+      - INDEXER_USERNAME=admin
+      - INDEXER_PASSWORD=SecretPassword
       - FILEBEAT_SSL_VERIFICATION_MODE=full
       - SSL_CERTIFICATE_AUTHORITIES=/etc/ssl/root-ca.pem
       - SSL_CERTIFICATE=/etc/ssl/filebeat.pem
@@ -109,13 +107,10 @@ services:
 
   indexer1:
     image: wazuh/wazuh-indexer:4.12.0
-    hostname: wazuh1.indexer
+    hostname: indexer1
     restart: always
     networks:
       - indexer
-      - frontend
-      - backend
-      - management
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       - "bootstrap.memory_lock=true"
@@ -138,14 +133,18 @@ services:
 
   dashboard:
     image: wazuh/wazuh-dashboard:4.12.0
-    hostname: wazuh.dashboard
+    hostname: dashboard
     restart: always
     networks:
       - frontend
       - management
-      - indexer
-    env_file:
-      - ../security/dashboard/secrets.env
+    environment:
+      - OPENSEARCH_HOSTS="https://indexer1:9200"
+      - WAZUH_API_URL="https://wazuh.master"
+      - API_USERNAME=wazuh-wui
+      - API_PASSWORD=MyS3cr37P450r.*-
+      - DASHBOARD_USERNAME=kibanaserver
+      - DASHBOARD_PASSWORD=kibanaserver
     volumes:
       - ../configs/wazuh_indexer_ssl_certs/wazuh.dashboard.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem
       - ../configs/wazuh_indexer_ssl_certs/wazuh.dashboard-key.pem:/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem
@@ -156,155 +155,44 @@ services:
       - wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
     depends_on:
       - indexer1
+
 volumes:
-  master-wazuh-queue:
-  worker-wazuh-queue:
-  master-wazuh-var-multigroups:
-  worker-wazuh-var-multigroups:
-  master-wazuh-logs:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-logs"
-
-  worker-wazuh-logs:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-logs"
-
   master-wazuh-api-configuration:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-api-configuration"
-
   master-wazuh-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-etc"
-
+  master-wazuh-logs:
+  master-wazuh-queue:
+  master-wazuh-var-multigroups:
   master-wazuh-integrations:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-integrations"
-
-  master-wazuh-agentless:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-agentless"
-
   master-wazuh-active-response:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-active-response"
-
+  master-wazuh-agentless:
   master-wazuh-wodles:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-wazuh-wodles"
-
   master-filebeat-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-filebeat-etc"
-
   master-filebeat-var:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/master-filebeat-var"
-
   worker-wazuh-api-configuration:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-api-configuration"
-
   worker-wazuh-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-etc"
-
+  worker-wazuh-logs:
+  worker-wazuh-queue:
+  worker-wazuh-var-multigroups:
   worker-wazuh-integrations:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-integrations"
-
-  worker-wazuh-agentless:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-agentless"
-
   worker-wazuh-active-response:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-active-response"
-
+  worker-wazuh-agentless:
   worker-wazuh-wodles:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-wazuh-wodles"
-
   worker-filebeat-etc:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-filebeat-etc"
-
   worker-filebeat-var:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/worker-filebeat-var"
-
   wazuh-indexer-data-1:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-1"
-
   wazuh-indexer-data-2:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-2"
-
   wazuh-indexer-data-3:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-indexer-data-3"
-
   wazuh-dashboard-config:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-dashboard-config"
-
   wazuh-dashboard-custom:
-    driver_opts:
-      type: "nfs"
-      o: "addr=${nfs_server},rw"
-      device: ":/mnt/wazuh/data/wazuh-dashboard-custom"
 
 networks:
   backend:
-    driver: bridge
+    driver: overlay
+    internal: true
   frontend:
-    driver: bridge
+    driver: overlay
   management:
-    driver: bridge
+    driver: overlay
   indexer:
-    driver: bridge
+    driver: overlay
+    internal: true

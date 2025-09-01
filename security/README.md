@@ -23,3 +23,6 @@ The self-hosted runner was joined using a private token.
 All secrets are in the private repo in an encrypted form.
 Only the holder of the pgp private key, which SOPS bound to, is able to decrypt the secrets.
 Though encrypted, the ssl keys are subject to renewal after a resonable term.
+
+## File access
+As the reverse proxy runs a crontab for certbot (cert renewal routine). The folder holding priv/public keys and its content (/configs/nginx/letsencrypt inside the NFS share) is writable by everyone until the user:group of certbot is determind. 

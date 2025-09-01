@@ -1,9 +1,9 @@
-#version: "3.8"
+---
+version: "3.8"
+
 services:
   reverse-proxy:
-    build: 
-      dockerfile: docker/nginx/Dockerfile
-      context: ..
+    image: stack-reverse-proxy
     env_file:
       - ../configs/nginx/.env
     volumes:
@@ -17,33 +17,27 @@ services:
     networks:
       - management
       - frontend
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.role == resolvable
+      #restart_policy:
+        #condition: unless-stopped
     depends_on:
       - master
       - worker
       - dashboard
-        #It should be placed in host that the dns server resolves to
-        #placement:
-        #constraints:
-        # - node.labels.role == resolvable
+
   master:
     image: wazuh/wazuh-manager:4.12.0
     hostname: wazuh.master
-    restart: always
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 655360
-        hard: 655360
-          # ports:
-        #  - "514:514/udp" for syslog
     networks:
       - backend
-      - frontend #agents' conn. and enroll. loadbalancing
-      - management # restful api
+      - frontend
+      - management
       - indexer
-    env_file: 
+    env_file:
       - ../security/master/secrets.env
     environment:
       - FILEBEAT_SSL_VERIFICATION_MODE=full
@@ -66,23 +60,27 @@ services:
       - ../configs/wazuh_indexer_ssl_certs/wazuh.master.pem:/etc/ssl/filebeat.pem
       - ../configs/wazuh_indexer_ssl_certs/wazuh.master-key.pem:/etc/ssl/filebeat.key
       - ../configs/wazuh_cluster/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+          #    - node.labels.wazuh.role == master
+      resources:
+        limits:
+          memory: 5G
+        reservations:
+          memory: 4G
+      #restart_policy:
+        #condition: unless-stopped
 
   worker:
     image: wazuh/wazuh-manager:4.12.0
     hostname: wazuh.worker
-    restart: always
     networks:
       - frontend
       - management
-      - backend      
+      - backend
       - indexer
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 655360
-        hard: 655360
     env_file:
       - ../security/worker/secrets.env
     environment:
@@ -106,11 +104,22 @@ services:
       - ../configs/wazuh_indexer_ssl_certs/wazuh.worker.pem:/etc/ssl/filebeat.pem
       - ../configs/wazuh_indexer_ssl_certs/wazuh.worker-key.pem:/etc/ssl/filebeat.key
       - ../configs/wazuh_cluster/wazuh_worker.conf:/wazuh-config-mount/etc/ossec.conf
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == worker
+      resources:
+        limits:
+          memory: 3G
+        reservations:
+          memory: 3G
+      #restart_policy:
+        #condition: unless-stopped
 
   indexer1:
     image: wazuh/wazuh-indexer:4.12.0
     hostname: wazuh1.indexer
-    restart: always
     networks:
       - indexer
       - frontend
@@ -119,13 +128,6 @@ services:
     environment:
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       - "bootstrap.memory_lock=true"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
     volumes:
       - wazuh-indexer-data-1:/var/lib/wazuh-indexer
       - ../configs/wazuh_indexer_ssl_certs/root-ca.pem:/usr/share/wazuh-indexer/certs/root-ca.pem
@@ -135,11 +137,22 @@ services:
       - ../configs/wazuh_indexer_ssl_certs/admin-key.pem:/usr/share/wazuh-indexer/certs/admin-key.pem
       - ../configs/wazuh_indexer/wazuh1.indexer.yml:/usr/share/wazuh-indexer/opensearch.yml
       - ../configs/wazuh_indexer/internal_users.yml:/usr/share/wazuh-indexer/opensearch-security/internal_users.yml
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == indexer
+      resources:
+        limits:
+          memory: 6G
+        reservations:
+          memory: 6G
+      #restart_policy:
+        #condition: unless-stopped
 
   dashboard:
     image: wazuh/wazuh-dashboard:4.12.0
     hostname: wazuh.dashboard
-    restart: always
     networks:
       - frontend
       - management
@@ -154,6 +167,18 @@ services:
       - ../configs/wazuh_dashboard/wazuh.yml:/usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml
       - wazuh-dashboard-config:/usr/share/wazuh-dashboard/data/wazuh/config
       - wazuh-dashboard-custom:/usr/share/wazuh-dashboard/plugins/wazuh/public/assets/custom
+    deploy:
+      replicas: 1
+        #placement:
+        #constraints:
+        # - node.labels.wazuh.role == dashboard
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+      #restart_policy:
+        #condition: unless-stopped
     depends_on:
       - indexer1
 volumes:
@@ -301,10 +326,14 @@ volumes:
 
 networks:
   backend:
-    driver: bridge
+    driver: overlay
+    attachable: true
   frontend:
-    driver: bridge
+    driver: overlay
+    attachable: true
   management:
-    driver: bridge
+    driver: overlay
+    attachable: true
   indexer:
-    driver: bridge
+    driver: overlay
+    attachable: true
