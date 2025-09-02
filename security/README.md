@@ -26,3 +26,43 @@ Though encrypted, the ssl keys are subject to renewal after a resonable term.
 
 ## File access
 As the reverse proxy runs a crontab for certbot (cert renewal routine). The folder holding priv/public keys and its content (/configs/nginx/letsencrypt inside the NFS share) is writable by everyone until the user:group of certbot is determind. 
+
+## Secure CD/CI
+To avoid pushing sensitive files such as credentials of wazuh application and cryptographic key. Please proceed as follows:
+- Ask the administrator to give you the gpg folder `.gnupg` and place under your home directory.
+- Add the following script to `.git/hooks/pre-commit`:
+```
+#!/bin/bash
+#
+# Git pre-push hook to encrypt sensitive files with SOPS
+# Encrypts all *.pem and *secrets.env files in the repo before push
+#
+
+
+PGP_FG="385DF571928CE05D50CF1D115B612ED48CD7EEBB"
+
+# Find target files (only tracked ones to avoid encrypting junk)
+FILES=$(git ls-files | grep -E '(\.pem$|secrets\.env$)')
+
+if [[ -z "$FILES" ]]; then
+  echo "[pre-push] No .pem or secrets.env files found. Skipping SOPS encryption."
+  exit 0
+fi
+
+echo "[pre-push] Encrypting sensitive files with SOPS..."
+
+for f in $FILES; do
+  if [[ -f "$f" ]]; then
+    if grep -q '"sops": {' "$f" || grep -q '^sops:' "$f"; then
+      echo "  → Skipping $f (already encrypted)"
+    else
+      echo "  → Encrypting $f"
+      sops --encrypt --pgp "$PGP_FG" --in-place "$f"
+      git add "$f"
+    fi
+  fi
+done
+echo "[pre-push] All sensitive files encrypted and staged."
+exit 0
+
+```
