@@ -22,7 +22,7 @@ jobs:
           mkdir -p trivy-reports
           failed=0
 
-          # Find all images declared in the repo (adjust grep path as needed)
+          # Find all images declared in the repo 
           images=$(grep -rhoP 'image:\s*\K\S+' ../../../stack/stack.yml | sort -u)
 
           for img in $images; do
@@ -39,9 +39,32 @@ jobs:
             # Run Trivy scan
             safe_name=$(echo "$img" | tr '/:' '__')
             trivy image --severity HIGH,CRITICAL --exit-code 1 \
-              --format table --output trivy-reports/${safe_name}.txt "$img" || failed=1
+              --format table --output trivy-reports/${safe_name}.txt "$img" 
           done
 
+          # Use find to recursively process all files
+          find . -type f -exec sh -c '
+            for file do
+              # Use awk to check the pattern in each file
+              awk "
+                /^==========$/ {
+                  getline next_line
+                  if (next_line !~ /Total: 0/) {
+                    print \"Found issue in: \" FILENAME
+                    exit 1
+                  }
+                }
+              " "$file" >/dev/null 2>&1
+    
+          # If awk exited with status 1, set failed flag
+          if [ $? -eq 1 ]; then
+          failed=1
+          fi
+           done
+          ' sh {} +
+
+          # Export the failed variable to environment
+          export failed
           exit $failed
 
       - name: Upload scan reports as artifacts
