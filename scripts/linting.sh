@@ -9,5 +9,7 @@ fi
 one=$(grep error  yaml-reports/yamllint-report.log)
 if (( $one == 1 )); then
 	exit 0
+fi
 if [ "${ACCEPT_RISK}" = "true" ]; then
 	exit 0
+fi
