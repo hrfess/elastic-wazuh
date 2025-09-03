@@ -1,107 +1,18 @@
-name: Trivy Scan
-
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      accept_risk:
+        description: "Proceed if Trivy finds HIGH/CRITICAL vulnerabilities?"
+        required: true
+        default: "false"
 
 jobs:
   trivy-scan:
     runs-on: self-hosted
     steps:
-      # 1. Checkout source
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Create reports folder
-      - name: Prepare reports directory
-        run: mkdir -p trivy-reports
-
-      # 3. Extract images from stack.yml
-      - name: Extract Docker images
-        id: extract
+      - name: Run Trivy scan script
         run: |
-          images=$(grep -rhoP 'image:\s*\K\S+' stack/stack.yml | sort -u)
-          echo "Found images: $images"
-          echo "images=$images" >> $GITHUB_OUTPUT
-
-      # 4. Ensure images are available locally
-      - name: Pull missing Docker images
-        run: |
-          for img in ${{ steps.extract.outputs.images }}; do
-            if docker image inspect "$img" >/dev/null 2>&1; then
-              echo "✅ Found locally: $img"
-            else
-              echo "📥 Pulling $img"
-              docker pull "$img"
-            fi
-          done
-
-      # 5. Run Trivy scans
-      - name: Scan images with Trivy
-        run: |
-          failed=0
-          for img in ${{ steps.extract.outputs.images }}; do
-            safe_name=$(echo "$img" | tr '/:' '__')
-            echo "🔍 Scanning $img ..."
-            trivy image \
-              --severity HIGH,CRITICAL \
-              --exit-code 1 \
-              --format table \
-              --output trivy-reports/${safe_name}.txt \
-              "$img" || failed=1
-          done
-          echo "failed=$failed" >> $GITHUB_ENV
-
-      # 6. Parse reports (check if issues exist)
-      - name: Analyze Trivy reports
-        run: |
-          failed=0
-          for file in trivy-reports/*.txt; do
-            if awk '/^==========$/ { getline; if ($0 !~ /Total: 0/) exit 1 }' "$file"; then
-              echo "✅ No issues in $file"
-            else
-              echo "❌ Found issues in $file"
-              failed=1
-            fi
-          done
-          echo "failed=$failed" >> $GITHUB_ENV
-
-      # 7. Handle risk acceptance (non-interactive)
-      - name: Check acceptance
-        if: env.failed == '1'
-        run: |
-          if [ "${{ inputs.accept_risk }}" = "true" ]; then
-            echo "⚠️  Continuing despite the risk..."
-          else
-            echo "❌ Risks not accepted. Exiting..."
-            exit 1
-          fi
-
-
-      - name: Upload scan reports as artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-reports
-          path: trivy-reports/
-
-      - name: Combine reports into single file
-        if: always()
-        run: |
-          echo "## 🛡️ Trivy Scan Results" > combined-report.md
-          for f in trivy-reports/*.txt; do
-            echo -e "\n---\n### Report: $(basename $f)" >> combined-report.md
-            cat "$f" >> combined-report.md
-          done
-
-      - name: Create or update Trivy scan issue
-        if: always()
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: "🚨 Trivy Scan Results"
-          content-filepath: combined-report.md
-          labels: security, vulnerability
-
+          chmod +x scripts/trivy_scan.sh
+          ACCEPT_RISK="${{ inputs.accept_risk }}" ./scripts/trivy_scan.sh
