@@ -65,7 +65,23 @@ jobs:
 
           # Export the failed variable to environment
           export failed
-          exit $failed
+
+          if [ "$failed" -eq 1 ]; then
+            read -p "Do you want to accept the risk (yes/no)? " answer
+            case "$answer" in
+              [Yy][Ee][Ss]|[Yy])
+                echo "Continuing despite the risk..."
+                ;;
+              [Nn][Oo]|[Nn])
+                echo "Exiting..."
+                exit $failed
+                ;;
+              *)
+                echo "Invalid input. Exiting..."
+                exit $failed
+                            ;;
+              esac
+            fi
 
       - name: Upload scan reports as artifacts
         uses: actions/upload-artifact@v4
