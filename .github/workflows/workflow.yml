@@ -12,76 +12,75 @@ jobs:
   trivy-scan:
     runs-on: self-hosted
     steps:
+      # 1. Checkout source
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Find and scan Docker images with Trivy
-        id: trivy
+      # 2. Create reports folder
+      - name: Prepare reports directory
+        run: mkdir -p trivy-reports
+
+      # 3. Extract images from stack.yml
+      - name: Extract Docker images
+        id: extract
         run: |
-          set -e
-          mkdir -p trivy-reports
-          failed=0
+          images=$(grep -rhoP 'image:\s*\K\S+' stack/stack.yml | sort -u)
+          echo "Found images: $images"
+          echo "images=$images" >> $GITHUB_OUTPUT
 
-          # Find all images declared in the repo 
-          images=$(grep -rhoP 'image:\s*\K\S+' ../../../stack/stack.yml | sort -u)
-
-          for img in $images; do
-            echo "🔍 Processing $img ..."
-            
-            # Check if the image exists locally
-            if docker image inspect "$img" > /dev/null 2>&1; then
+      # 4. Ensure images are available locally
+      - name: Pull missing Docker images
+        run: |
+          for img in ${{ steps.extract.outputs.images }}; do
+            if docker image inspect "$img" >/dev/null 2>&1; then
               echo "✅ Found locally: $img"
             else
-              echo "📥 Pulling missing image: $img"
+              echo "📥 Pulling $img"
               docker pull "$img"
             fi
-
-            # Run Trivy scan
-            safe_name=$(echo "$img" | tr '/:' '__')
-            trivy image --severity HIGH,CRITICAL --exit-code 1 \
-              --format table --output trivy-reports/${safe_name}.txt "$img" 
           done
 
-          # Use find to recursively process all files
-          find . -type f -exec sh -c '
-            for file do
-              # Use awk to check the pattern in each file
-              awk "
-                /^==========$/ {
-                  getline next_line
-                  if (next_line !~ /Total: 0/) {
-                    print \"Found issue in: \" FILENAME
-                    exit 1
-                  }
-                }
-              " "$file" >/dev/null 2>&1
-    
-              # If awk exited with status 1, set failed flag
-              if [ $? -eq 1 ]; then
-                failed=1
-              fi
-            done
-              ' sh {} +
+      # 5. Run Trivy scans
+      - name: Scan images with Trivy
+        run: |
+          failed=0
+          for img in ${{ steps.extract.outputs.images }}; do
+            safe_name=$(echo "$img" | tr '/:' '__')
+            echo "🔍 Scanning $img ..."
+            trivy image \
+              --severity HIGH,CRITICAL \
+              --exit-code 1 \
+              --format table \
+              --output trivy-reports/${safe_name}.txt \
+              "$img" || failed=1
+          done
+          echo "failed=$failed" >> $GITHUB_ENV
 
-          # Export the failed variable to environment
-          export failed
+      # 6. Parse reports (check if issues exist)
+      - name: Analyze Trivy reports
+        run: |
+          failed=0
+          for file in trivy-reports/*.txt; do
+            if awk '/^==========$/ { getline; if ($0 !~ /Total: 0/) exit 1 }' "$file"; then
+              echo "✅ No issues in $file"
+            else
+              echo "❌ Found issues in $file"
+              failed=1
+            fi
+          done
+          echo "failed=$failed" >> $GITHUB_ENV
 
-          if [ "$failed" -eq 1 ]; then
-            read -p "Do you want to accept the risk (yes/no)? " answer
-            case "$answer" in
-              [Yy][Ee][Ss]|[Yy])
-                echo "Continuing despite the risk..."
-                ;;
-              [Nn][Oo]|[Nn])
-                echo "Exiting..."
-                exit $failed
-                ;;
-              *)
-                echo "Invalid input. Exiting..."
-                exit $failed
-                ;;
-            esac
+      # 7. Handle risk acceptance (non-interactive)
+      - name: Check acceptance
+        if: env.failed == '1'
+        run: |
+          if [ "${{ inputs.accept_risk }}" = "true" ]; then
+            echo "⚠️  Continuing despite the risk..."
+          else
+            echo "❌ Risks not accepted. Exiting..."
+            exit 1
           fi
+
 
       - name: Upload scan reports as artifacts
         uses: actions/upload-artifact@v4
