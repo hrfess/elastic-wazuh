@@ -6,6 +6,7 @@ FILES=$(git ls-files '*.yml' '*.yaml')
 if [ -n "$FILES" ]; then
 	yamllint $FILES > yaml-reports/yamllint-report.log
 fi
+#check for errors in yaml files
 one=$(grep error  yaml-reports/yamllint-report.log)
 if (( $one == 1 )); then
 	exit 0
