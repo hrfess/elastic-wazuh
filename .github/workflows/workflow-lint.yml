@@ -19,23 +19,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install yamllint
+      - name: Report env
         run: |
-          sudo apt-get update
-          sudo apt-get install -y yamllint
+          mkdir -p trivy-reports
 
       - name: Run yamllint and save to log
         run: |
           FILES=$(git ls-files '*.yml' '*.yaml')
           if [ -n "$FILES" ]; then
-            yamllint $FILES | tee yamllint-report.log
+            yamllint $FILES | tee trivy-reports/yamllint-report.log
           else
             echo "No YAML files found." | tee yamllint-report.log
           fi
 
-      - name: Upload lint log
-        uses: actions/upload-artifact@v4
-        with:
-          name: yamllint-report
-          path: yamllint-report.log
 
