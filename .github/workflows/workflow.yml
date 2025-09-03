@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       accept_risk:
-        description: "Proceed if Trivy finds HIGH/CRITICAL vulnerabilities?"
+        description: "Proceed  if Trivy finds HIGH/CRITICAL vulnerabilities?"
         required: true
         default: "false"
 
