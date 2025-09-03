@@ -3,7 +3,7 @@ This is the entrypoint of the reverse-proxy docker image. Configurable via ../co
 Where we can specify if this is a first deployment, the hostname of the dashboard cluster and address email of the maintainer. 
 
 ### First deployment
-Set FIRST_RUN to true if it is a first deployment. The script shall user certbot utility to authenticate with letsencrypt and grab importantly the public and private ssl keys.
+Set FIRST_RUN (in configs/nginx/.env) to true if it is a first deployment. The script shall user certbot utility to authenticate with letsencrypt and grab importantly the public and private ssl keys.
 The FQDN under CERTBOT_DOMAINS should resolve to the host where the cluster is running.
 
 ### SSL renewal

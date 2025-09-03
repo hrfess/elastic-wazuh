@@ -10,7 +10,7 @@ images=$(grep -rhoP 'image:\s*\K\S+' stack/stack.yml | sort -u)
 for img in $images; do
   echo "🔍 Processing $img ..."
 
-  if ! docker image inspect "$img" >/dev/null 2>&1; then
+  if ! sudo docker image inspect "$img" >/dev/null 2>&1; then
     echo "📥 Pulling missing image: $img"
     docker pull "$img" || failed=1
   fi

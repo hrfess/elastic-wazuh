@@ -7,20 +7,14 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      accept_risk:
-        description: "Proceed  if Trivy finds HIGH/CRITICAL vulnerabilities?"
-        required: true
-        default: "false"
 
 jobs:
   trivy-scan:
     runs-on: self-hosted
+    env:
+      ACCEPT_RISK: ${{ inputs.accept_risk || 'false' }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Run Trivy scan script
-        run: |
-          chmod +x scripts/trivy_scan.sh
-          ACCEPT_RISK="${{ inputs.accept_risk }}" ./scripts/trivy_scan.sh
+      - run: |
+          chmod +x ./scripts/trivy_scan.sh
+          ./scripts/trivy_scan.sh
