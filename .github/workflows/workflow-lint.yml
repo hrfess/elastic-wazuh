@@ -19,18 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Report env
+      - name: Report gen
         run: |
-          mkdir -p yaml-reports
-          touch yaml-reports/yamllint-report.log
-
-      - name: Run yamllint and save to log
-        run: |
-          FILES=$(git ls-files '*.yml' '*.yaml')
-          if [ -n "$FILES" ]; then
-            yamllint $FILES >> yaml-reports/yamllint-report.log
-          else
-            echo "No YAML files found." | tee yamllint-report.log
-          fi
+          chmod u+x ./scripts/linting.sh
+          ./scripts/linting.sh
 
 
