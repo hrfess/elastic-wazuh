@@ -16,12 +16,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout repository
+      - name: report gen
         uses: actions/checkout@v4
-
-      - name: Report gen
         run: |
-          chmod u+x ./scripts/linting.sh
+          chmod +x ./scripts/linting.sh
           ./scripts/linting.sh
-
-
