@@ -21,13 +21,14 @@ jobs:
 
       - name: Report env
         run: |
-          mkdir -p trivy-reports
+          mkdir -p yaml-reports
+          touch yaml-reports/yamllint-report.log
 
       - name: Run yamllint and save to log
         run: |
           FILES=$(git ls-files '*.yml' '*.yaml')
           if [ -n "$FILES" ]; then
-            yamllint $FILES | tee trivy-reports/yamllint-report.log
+            yamllint $FILES >> yaml-reports/yamllint-report.log
           else
             echo "No YAML files found." | tee yamllint-report.log
           fi
