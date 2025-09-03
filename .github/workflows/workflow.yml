@@ -12,7 +12,7 @@ jobs:
   trivy-scan:
     runs-on: self-hosted
     env:
-      ACCEPT_RISK: ${{ inputs.accept_risk || 'false' }}
+      ACCEPT_RISK: ${{ vars.ACCEPT_RISK_TRIVY || 'true' }}
     steps:
       - uses: actions/checkout@v4
       - run: |

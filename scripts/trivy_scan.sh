@@ -16,9 +16,10 @@ for img in $images; do
   fi
 
   safe_name=$(echo "$img" | tr '/:' '__')
-  trivy image \
+  sudo trivy image \
     --severity HIGH,CRITICAL \
     --exit-code 1 \
+    --scanners vuln\
     --format table \
     --output "trivy-reports/${safe_name}.txt" \
     "$img" || failed=1
@@ -36,7 +37,7 @@ done
 
 # Decide outcome
 if [ "$failed" -eq 1 ]; then
-  if [ "${ACCEPT_RISK:-false}" = "true" ]; then
+  if [ "${ACCEPT_RISK}" = "true" ]; then
     echo "⚠️  Continuing despite the risk..."
     exit 0
   else
