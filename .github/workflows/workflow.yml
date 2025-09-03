@@ -56,12 +56,12 @@ jobs:
                 }
               " "$file" >/dev/null 2>&1
     
-          # If awk exited with status 1, set failed flag
-          if [ $? -eq 1 ]; then
-          failed=1
-          fi
-           done
-          ' sh {} +
+              # If awk exited with status 1, set failed flag
+              if [ $? -eq 1 ]; then
+                failed=1
+              fi
+            done
+              ' sh {} +
 
           # Export the failed variable to environment
           export failed
@@ -79,9 +79,9 @@ jobs:
               *)
                 echo "Invalid input. Exiting..."
                 exit $failed
-                            ;;
-              esac
-            fi
+                ;;
+            esac
+          fi
 
       - name: Upload scan reports as artifacts
         uses: actions/upload-artifact@v4
