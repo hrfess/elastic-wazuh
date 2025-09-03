@@ -14,7 +14,8 @@ jobs:
   yamllint:
     name: Run yamllint
     runs-on: self-hosted
-
+    env:
+      ACCEPT_RISK: ${{ vars.ACCEPT_RISK_YAML || 'true' }}
     steps:
       - uses: actions/checkout@v4
       - run: |
